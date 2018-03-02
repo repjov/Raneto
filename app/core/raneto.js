@@ -47,6 +47,14 @@ function patch_content_dir (content_dir) {
   return content_dir.replace(/\\/g, '/');
 }
 
+//fixed russin search
+var trimmerEnRu = function (token) {
+  return token
+    .replace(/^[^\wа-яёА-ЯЁ]+/, '')
+    .replace(/[^\wа-яёА-ЯЁ]+$/, '');
+};
+lunr.Pipeline.registerFunction(trimmerEnRu, 'trimmer-enru');
+
 class Raneto {
 
   constructor () {
@@ -189,6 +197,7 @@ class Raneto {
     filesProcessed.push({
       slug     : '.',
       title    : '',
+      description: '',
       show_on_home: true,
       is_index : true,
       active: (baseSlug === ''),
@@ -237,6 +246,7 @@ class Raneto {
         filesProcessed.push({
           slug     : shortPath,
           title    : dirMetadata.title || _s.titleize(_s.humanize(path.basename(shortPath))),
+          description: dirMetadata.description || "",
           show_on_home: dirMetadata.show_on_home ? (dirMetadata.show_on_home === 'true') : this.config.show_on_home_default,
           is_index : false,
           is_directory: true,
@@ -272,6 +282,7 @@ class Raneto {
           val.files.push({
             slug   : slug,
             title  : meta.title ? meta.title : this.slugToTitle(slug),
+            description: meta.description || "",
             show_on_home: meta.show_on_home ? (meta.show_on_home === 'true') : this.config.show_on_home_default,
             is_directory: false,
             active : (activePageSlug.trim() === '/' + slug),
@@ -297,6 +308,8 @@ class Raneto {
     const contentDir = patch_content_dir(path.normalize(this.config.content_dir));
     const files = glob.sync(contentDir + '**/*.md');
     const idx   = lunr(function () {
+      this.pipeline.reset();
+      this.pipeline.add(trimmerEnRu);
       this.field('title', { boost: 10 });
       this.field('body');
     });
@@ -317,7 +330,6 @@ class Raneto {
         if (this.config.debug) { console.log(e); }
       }
     });
-
     const results       = idx.search(query);
     const searchResults = [];
 

@@ -1,0 +1,87 @@
+<div class="row">
+    <div class="col-sm-3 hidden-xs">
+  
+      <ul class="menu">
+        {{#canEdit}}
+          <li><input id="newCategory" type="text" class="form-control" placeholder="{{lang.page.addCategory}}"/></li>
+        {{/canEdit}}
+        
+        <li class="category active">
+          <h5 class="category-title">Главная</h5>
+          <ul class="pages">
+            <li class="page active"><a href="{{config.base_url}}/">Playbook</a></li>
+          </ul>
+        </li>
+        {{#pages}}
+          <li class="category">
+            {{#is_index}}
+              <h5 class="category-title">О нас {{#canEdit}}<a class="add-page" data-toggle="modal" data-target="#addModal" title="{{lang.page.addPage}}"><span style="font-weight: bold; font-size: 16px; cursor:pointer">&#43;</span></a>{{/canEdit}}</h5>
+            {{/is_index}}
+            {{^is_index}}
+              <h5 class="category-title">{{title}} {{#canEdit}}<a class="add-page" data-toggle="modal" data-target="#addModal" title="{{lang.page.addPage}}"><span style="font-weight: bold; font-size: 16px; cursor:pointer">&#43;</span></a>{{/canEdit}}</h5>
+            {{/is_index}}
+            <ul class="pages">
+              {{#files}}
+                {{^is_directory}}
+                  <li class="page"><a href="{{config.base_url}}/{{slug}}">{{title}}</a></li>
+                {{/is_directory}}
+                {{#is_directory}}
+                  <li class="page">{{title}}
+                    {{#files}}
+                      <ul>
+                        {{^is_directory}}
+                          <li class="page"><a href="{{config.base_url}}/{{slug}}">{{title}}</a></li>
+                        {{/is_directory}}
+                        {{#is_directory}}
+                          <li class="page">{{title}}</li>
+                          <ul>
+                            {{#files}}
+                              <li class="page"><a href="{{config.base_url}}/{{slug}}">{{title}}</a></li>
+                            {{/files}}
+                          </ul>
+                        {{/is_directory}}
+                      </ul>
+                    {{/files}}
+                  </li>
+                {{/is_directory}}
+              {{/files}}
+            </ul>
+          </li>
+        {{/pages}}
+      </ul>
+  
+    </div>
+    <div class="col-sm-9">
+  
+      <section class="content">
+       <h1 class="title">Playbook</h1>
+       <div class="row">
+          <div class="col col-md-12">
+              <h3>Что такое playbook</h3>
+              <p>
+                Термин <b>Playbook</b> в Кембриджском словаре означает
+                <i>"свод правили и предложений, которые считаются подходящими для конкретной
+                деятельности, отрасли или работы"</i>.
+              </p>
+              <p>
+                В нашем же случае – описание ценностей, бизнес-процессов, 
+                стандартов, процедур и правил, используемых в компании</i>.
+              </p>
+          </div>
+        </div>
+       <div class="row">
+          <div class="col col-md-12">
+              <h3>Зачем мы его создали</h3>
+              <p>
+                Мы хотим сделать нушу работу более прозрачной, чтобы каждый мог 
+                ознакомиться с нашими целями, ценностями, мог увидеть процессы и 
+                инструменты с которыми мы работаем, ознакомиться с правилами, которых мы 
+                придерживаемся.
+              </p>
+          </div>
+        </div>
+      </section>
+  
+    </div>
+  </div>
+  
