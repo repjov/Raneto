@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="{{config.base_url}}/styles/raneto.rtl.css">
     <link rel="stylesheet" href="{{config.base_url}}/lib/bootstrap-rtl/dist/css/bootstrap-rtl.min.css">
     {{/rtl_layout}} {{{config.analytics}}}
+    <link rel="stylesheet" href="{{config.base_url}}/styles/lds-style.css">
 </head>
 
 <body class="{{body_class}}">
@@ -26,12 +27,13 @@
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4 form-box">
                 <div class="form-top">
-                    <div class="form-top-left">
-                        <h1>Raneto</h1>
-                    </div>
                     <div class="form-top-right">
-                        <img src="{{config.base_url}}/favicon.ico"></i>
+                      <img src="{{config.base_url}}/images/logo.svg"></i>
                     </div>
+                    <div class="form-top-left">
+                        <h2>Lodoss Team</h2>
+                    </div>
+
                 </div>
 
                 <div class="form-bottom">
@@ -70,11 +72,6 @@
     <script src="{{config.base_url}}/lib/jquery.backstretch/jquery.backstretch.min.js"></script>
     <script src="{{config.base_url}}/lib/sweetalert2/dist/sweetalert2.all.min.js"></script>
     <script src="{{config.base_url}}/scripts/login.js"></script>
-    <script>
-    $(document).ready(function() {
-        $.backstretch("{{config.base_url}}/images/background.jpg");
-    });
-    </script>
 </body>
 
 </html>

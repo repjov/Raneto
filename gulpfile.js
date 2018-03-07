@@ -4,6 +4,7 @@
 // Modules
 var gulp = require('gulp');
 var sass = require('gulp-sass');
+var config = require('./example/config.default.js');
 
 gulp.task('copy_libs', function () {
 
@@ -26,14 +27,14 @@ gulp.task('copy_libs', function () {
 
 });
 
-gulp.task('scss2css', function(){
-  return gulp.src('themes/default/public/styles/*.scss')
+gulp.task('scss2css', function () {
+  return gulp.src(`themes/${config.theme_name}/public/styles/*.scss`)
     .pipe(sass().on('error', sass.logError))
-    .pipe(gulp.dest('themes/default/public/styles/'));
+    .pipe(gulp.dest(`themes/${config.theme_name}/public/styles/`));
 });
 
 gulp.task('sasswatch', function () {
-  gulp.watch('themes/default/public/styles/*.scss', ['scss2css']);
+  gulp.watch(`themes/${config.theme_name}/public/styles/*.scss`, ['scss2css']);
 });
 
 // Default

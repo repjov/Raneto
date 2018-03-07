@@ -35,7 +35,7 @@ var config = {
 
   // Which Theme to Use?
   theme_dir  : path.join(__dirname, '..', 'themes'),
-  theme_name : 'default',
+  theme_name : 'lds-playbook',
 
   // Specify the path of your content folder where all your '.md' files are located
   // Fix: Needs trailing slash for now!

@@ -47,7 +47,7 @@ function patch_content_dir (content_dir) {
   return content_dir.replace(/\\/g, '/');
 }
 
-//fixed russin search
+// fixed russin search
 var trimmerEnRu = function (token) {
   return token
     .replace(/^[^\wа-яёА-ЯЁ]+/, '')
@@ -246,7 +246,7 @@ class Raneto {
         filesProcessed.push({
           slug     : shortPath,
           title    : dirMetadata.title || _s.titleize(_s.humanize(path.basename(shortPath))),
-          description: dirMetadata.description || "",
+          description: dirMetadata.description || '',
           show_on_home: dirMetadata.show_on_home ? (dirMetadata.show_on_home === 'true') : this.config.show_on_home_default,
           is_index : false,
           is_directory: true,
@@ -282,7 +282,7 @@ class Raneto {
           val.files.push({
             slug   : slug,
             title  : meta.title ? meta.title : this.slugToTitle(slug),
-            description: meta.description || "",
+            description: meta.description || '',
             show_on_home: meta.show_on_home ? (meta.show_on_home === 'true') : this.config.show_on_home_default,
             is_directory: false,
             active : (activePageSlug.trim() === '/' + slug),
