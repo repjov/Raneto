@@ -9,6 +9,7 @@ var marked                         = require('marked');
 var toc                            = require('markdown-toc');
 var get_last_modified              = require('../functions/get_last_modified.js');
 var remove_image_content_directory = require('../functions/remove_image_content_directory.js');
+var check_permission               = require('../functions/check_permission.js');
 
 function route_wildcard (config, raneto) {
   return function (req, res, next) {
@@ -45,6 +46,9 @@ function route_wildcard (config, raneto) {
         var meta = raneto.processMeta(content);
         meta.custom_title = meta.title;
         if (!meta.title) { meta.title = raneto.slugToTitle(file_path); }
+
+        // Check permissions
+        const canShow = check_permission(raneto.config, meta);
 
         // Content
         content = raneto.stripMeta(content);
@@ -94,6 +98,7 @@ function route_wildcard (config, raneto) {
 
         return res.render(render, {
           config        : config,
+          canShow       : canShow,
           pages         : build_nested_pages(pageList),
           meta          : meta,
           content       : content,

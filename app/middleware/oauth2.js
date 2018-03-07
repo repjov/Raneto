@@ -22,17 +22,22 @@ var GoogleStrategy = require('passport-google-oauth20').Strategy;
 function extractProfile (profile) {
   var imageUrl = '';
   var domain = '';
+  var email = '';
   if (profile.photos && profile.photos.length) {
     imageUrl = profile.photos[0].value;
   }
   if (profile._json && profile._json.domain) {
     domain = profile._json.domain;
   }
+  if (profile.emails && profile.emails.length > 0) {
+    email = profile.emails[0].value;
+  }
   return {
     id: profile.id,
     displayName: profile.displayName,
     image: imageUrl,
-    domain: domain
+    domain: domain,
+    email: email
   };
 }
 
