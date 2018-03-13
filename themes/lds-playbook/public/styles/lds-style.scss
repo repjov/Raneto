@@ -6,6 +6,12 @@ $muller-bold: 'MullerBold';
 $muller-light: 'MullerLight';
 $muller-med: 'MullerMedium';
 
+// ----- media
+$break-phone: 320px;
+$break-tablet-l: 767px;
+$break-tablet-p: 1024px;
+$break-large: 1200px;
+
 body {
     font-size: 16px;
     font-family: $muller-reg !important;
@@ -27,6 +33,9 @@ h5 {
 
 h1 {
     font-size: 46px;
+    @media screen and (max-width: $break-tablet-l) {
+      font-size: 36px;
+    }
 }
 
 b, strong {
@@ -35,6 +44,20 @@ b, strong {
 
 i {
     font-family: $muller-light;
+}
+
+a {
+  color: #000;
+  &:hover {
+    color: #000;
+  }
+}
+
+.top-space {
+  height: 40px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .page-home {
@@ -56,6 +79,10 @@ i {
             border-color: #333;
             box-shadow: inherit;
         }
+    }
+
+    @media screen and (max-width: $break-tablet-l) {
+      display: none !important;
     }
 }
 
@@ -82,6 +109,48 @@ i {
     }
 }
 
+.mobile-menu {
+  background: #000;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  transform: scaleX(0);
+
+  &.opened {
+    transform: scaleX(1);
+  }
+
+  .menu {
+    margin: 96px 45px 40px;
+    font-size: 22px;
+    .category-title {
+      color: #fff;
+      font-size: 30px;
+    }
+    a {
+      &:hover {
+        color: #fff;
+      }
+    }
+    li {
+      line-height: 45px;
+    }
+    .page {
+      &.active {
+        a {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+.fixed-content {
+  position: fixed;
+}
+
 .header {
     background: #fff;
     color: #000;
@@ -96,6 +165,70 @@ i {
     .logo {
         text-transform: uppercase;
     }
+
+  .menuButton {
+    z-index: 100;
+    float: right;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    padding: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+    display: none;
+
+    @media screen and (max-width: $break-tablet-l) {
+      display: block;
+    }
+
+    &.open {
+      .menuButton__line {
+        background-color: #fff;
+        &_top {
+          transform: scale(1) rotate(-45deg) translate(-1px,2px);
+        }
+        &_bottom {
+          transform: scale(1) rotate(45deg) translateY(4px);
+        }
+      }
+    }
+
+    &.hovered:not(.open) {
+      .menuButton__line {
+        &_bottom {
+          transform: scaleX(1);
+        }
+      }
+    }
+
+    .menuButton__line {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      will-change: transform;
+      background-color: #000;
+      transition: -webkit-transform .35s;
+      transition: transform .35s;
+      transition: transform .35s,-webkit-transform .35s;
+      box-shadow: 1px 1px 1px transparent;
+      -webkit-backface-visibility: hidden;
+
+      &_top {
+        top: 6px;
+      }
+
+      &_bottom {
+        top: 12px;
+        transform: scaleX(.62);
+        transform-origin: right bottom
+      }
+    }
+  }
 }
 
 .home-search {
@@ -128,6 +261,16 @@ i {
 
 .flex-aligment-center {
     display: flex;
+    font-family: $muller-med;
+
+    @media screen and (max-width: $break-tablet-l) {
+      display: block;
+      text-align: center;
+
+      img {
+        float: left;
+      }
+    }
 }
 
 .content {
@@ -137,6 +280,12 @@ i {
     pre {
         background-color: #f5f5f5;
     }
+
+    @media screen and (max-width: $break-tablet-l) {
+      padding: 0px;
+      margin: 20px 0;
+    }
+
 }
 
 .CodeMirror {
@@ -149,22 +298,40 @@ i {
     width: 100%;
     position: absolute;
     bottom: 0;
-    background: #fff;
+    background: #000;
+
 
     .copyright {
         margin: 20px 40px;
+        color: #fff;
+        a {
+          color: #666;
+
+          &:hover {
+            color: #fff;
+            text-decoration: none;
+          }
+        }
     }
 }
 
 .last-updated {
     color: #b9b9b9;
     font-size: 10px;
+    @media screen and (max-width: $break-tablet-p) {
+      padding-bottom: 18px;
+      text-align: left;
+    }
 }
 
 .menu {
     margin: 96px 45px 40px;
     .category-title {
         font-size: 14px;
+    }
+
+    @media screen and (max-width: $break-tablet-p) {
+      margin: 96px 0px 40px;
     }
 }
 

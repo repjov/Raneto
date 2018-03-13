@@ -126,8 +126,8 @@
           file    : decodeURI(file_arr.join("/")),
           content : $("#entry-markdown").val(),
           meta_title : $("#entry-metainfo-title").val(),
-          meta_description : $("#entry-metainfo-description").val(),  
-          meta_sort : $("#entry-metainfo-sort").val(),  
+          meta_description : $("#entry-metainfo-description").val(),
+          meta_sort : $("#entry-metainfo-sort").val(),
         }, function (data) {
           switch (data.status) {
             case 0:
@@ -155,5 +155,30 @@
     });
 
   });
+
+  // LDS additionals
+  $('.mobile-menu').html($('.menu').clone());
+
+  // hamburger menu
+  $('.menuButton')
+    .hover(function () {
+      $(this).addClass('hovered');
+    }, function () {
+      $(this).removeClass('hovered');
+    })
+    .click(function () {
+      var mobileMenuIsToggle =  $('.mobile-menu.opened').length ? true : false;
+      if (mobileMenuIsToggle) {
+        $('body').removeClass('fixed-content');
+        $('.mobile-menu').removeClass('opened');
+        $(this).removeClass('open');
+      } else {
+        $(this).addClass('open');
+        $('.mobile-menu').addClass('opened');
+        $('body').addClass('fixed-content');
+      }
+      console.log('>>>>', mobileMenuIsToggle);
+
+    });
 
 })(jQuery, hljs);

@@ -41,12 +41,26 @@ h5 {
 
 h1 {
   font-size: 46px; }
+  @media screen and (max-width: 767px) {
+    h1 {
+      font-size: 36px; } }
 
 b, strong {
   font-family: "MullerBold"; }
 
 i {
   font-family: "MullerLight"; }
+
+a {
+  color: #000; }
+  a:hover {
+    color: #000; }
+
+.top-space {
+  height: 40px;
+  border-bottom: 1px solid #e6e6e6;
+  margin-left: 5%;
+  margin-right: 5%; }
 
 .page-home .header .search-form {
   display: block; }
@@ -59,6 +73,10 @@ i {
   .search-form input:focus {
     border-color: #333;
     box-shadow: inherit; }
+
+@media screen and (max-width: 767px) {
+  .search-form {
+    display: none !important; } }
 
 .container-fluid {
   padding-left: 5%;
@@ -77,6 +95,32 @@ i {
   padding: 0 17px;
   margin: 0; }
 
+.mobile-menu {
+  background: #000;
+  position: absolute;
+  top: 0;
+  height: 100vh;
+  width: 100vw;
+  overflow: auto;
+  transform: scaleX(0); }
+  .mobile-menu.opened {
+    transform: scaleX(1); }
+  .mobile-menu .menu {
+    margin: 96px 45px 40px;
+    font-size: 22px; }
+    .mobile-menu .menu .category-title {
+      color: #fff;
+      font-size: 30px; }
+    .mobile-menu .menu a:hover {
+      color: #fff; }
+    .mobile-menu .menu li {
+      line-height: 45px; }
+    .mobile-menu .menu .page.active a {
+      color: #fff; }
+
+.fixed-content {
+  position: fixed; }
+
 .header {
   background: #fff;
   color: #000; }
@@ -86,6 +130,49 @@ i {
       color: #000; }
   .header .logo {
     text-transform: uppercase; }
+  .header .menuButton {
+    z-index: 100;
+    float: right;
+    width: 20px;
+    height: 20px;
+    position: relative;
+    padding: 0;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background-color: transparent;
+    -webkit-tap-highlight-color: transparent;
+    display: none; }
+    @media screen and (max-width: 767px) {
+      .header .menuButton {
+        display: block; } }
+    .header .menuButton.open .menuButton__line {
+      background-color: #fff; }
+      .header .menuButton.open .menuButton__line_top {
+        transform: scale(1) rotate(-45deg) translate(-1px, 2px); }
+      .header .menuButton.open .menuButton__line_bottom {
+        transform: scale(1) rotate(45deg) translateY(4px); }
+    .header .menuButton.hovered:not(.open) .menuButton__line_bottom {
+      transform: scaleX(1); }
+    .header .menuButton .menuButton__line {
+      display: block;
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      will-change: transform;
+      background-color: #000;
+      transition: -webkit-transform .35s;
+      transition: transform .35s;
+      transition: transform .35s,-webkit-transform .35s;
+      box-shadow: 1px 1px 1px transparent;
+      -webkit-backface-visibility: hidden; }
+      .header .menuButton .menuButton__line_top {
+        top: 6px; }
+      .header .menuButton .menuButton__line_bottom {
+        top: 12px;
+        transform: scaleX(0.62);
+        transform-origin: right bottom; }
 
 .home-search.jumbotron {
   background-color: #fff; }
@@ -107,13 +194,24 @@ i {
   margin: 0; }
 
 .flex-aligment-center {
-  display: flex; }
+  display: flex;
+  font-family: "MullerMedium"; }
+  @media screen and (max-width: 767px) {
+    .flex-aligment-center {
+      display: block;
+      text-align: center; }
+      .flex-aligment-center img {
+        float: left; } }
 
 .content {
   border: none;
   box-shadow: none; }
   .content pre {
     background-color: #f5f5f5; }
+  @media screen and (max-width: 767px) {
+    .content {
+      padding: 0px;
+      margin: 20px 0; } }
 
 .CodeMirror pre {
   background-color: transparent; }
@@ -122,18 +220,31 @@ i {
   width: 100%;
   position: absolute;
   bottom: 0;
-  background: #fff; }
+  background: #000; }
   .footer .copyright {
-    margin: 20px 40px; }
+    margin: 20px 40px;
+    color: #fff; }
+    .footer .copyright a {
+      color: #666; }
+      .footer .copyright a:hover {
+        color: #fff;
+        text-decoration: none; }
 
 .last-updated {
   color: #b9b9b9;
   font-size: 10px; }
+  @media screen and (max-width: 1024px) {
+    .last-updated {
+      padding-bottom: 18px;
+      text-align: left; } }
 
 .menu {
   margin: 96px 45px 40px; }
   .menu .category-title {
     font-size: 14px; }
+  @media screen and (max-width: 1024px) {
+    .menu {
+      margin: 96px 0px 40px; } }
 
 .hljs-keyword {
   color: #b24fb9; }
